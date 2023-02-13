@@ -4,28 +4,14 @@ import { Provider } from 'react-redux'
 
 import './index.css'
 import App from './App'
-import { store } from './store'
-
+import { store } from './store/store'
+import "virtual:svg-icons-register";
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLDivElement
 )
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+)
 
-if (process.env.NODE_ENV === 'development') {
-  import('../mocks/browser')
-    .then(({ worker }) => {
-      worker.start()
-    })
-    .then(() => {
-      root.render(
-        <Provider store={store}>
-          <App />
-        </Provider>
-      )
-    })
-} else {
-  root.render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  )
-}
