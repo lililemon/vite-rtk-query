@@ -8,7 +8,7 @@ const Layout = () => {
             <main className="flex-1">
                 <Outlet />
             </main>
-            <nav className="border-t border-x-cyan-700">
+            <nav className="sticky bottom-0 w-full">
                 <Tabbar />
             </nav>
         </div>

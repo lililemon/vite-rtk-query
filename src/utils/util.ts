@@ -197,3 +197,57 @@ export function randomNum(min: number, max: number): number {
 	let num = Math.floor(Math.random() * (min - max) + max);
 	return num;
 }
+
+// 用毫秒表示分钟、小时、天、周、月
+let minute = 1000 * 60;
+let hour = minute * 60;
+let day = hour * 24;
+let week = day * 7;
+let month = day * 30;
+ 
+ 
+// 传入时间格式或时间戳，这里传入的时间格式: 2022-08-05T08:17:14.000+00:00
+export function convertTimestampToHumanReadable(timestamp:number) {
+		const minute = 1000 * 60; // 把分，时，天，周，半个月，一个月用毫秒表示
+	   
+		const hour = minute * 60;
+		const day = hour * 24;
+		const week = day * 7;
+		const now = new Date().getTime(); // 获取当前时间毫秒
+	   
+		const diffValue = now - timestamp; // 时间差
+	   
+		let result = '';
+	   
+		if (diffValue < 0) {
+		  return;
+		}
+	   
+		const minC = diffValue / minute; // 计算时间差的分，时，天，周，月
+	   
+		const hourC = diffValue / hour;
+		const dayC = diffValue / day;
+		const weekC = diffValue / week;
+	   
+		if (weekC >= 1 && weekC <= 4) {
+		  result = ` ${parseInt(weekC.toString(), 10)} weeks ago`;
+		} else if (dayC >= 1 && dayC <= 6) {
+		  result = ` ${parseInt(dayC.toString(), 10)} days ago`;
+		} else if (hourC >= 1 && hourC <= 23) {
+		  result = ` ${parseInt(hourC.toString(), 10)} hours ago`;
+		} else if (minC >= 1 && minC <= 59) {
+		  result = ` ${parseInt(minC.toString(), 10)} mins ago`;
+		} else if (diffValue >= 0 && diffValue <= minute) {
+		  result = 'just';
+		} else {
+		  const datetime = new Date();
+		  datetime.setTime(timestamp);
+		  const Nyear = datetime.getFullYear();
+		  const Nmonth = datetime.getMonth() + 1 < 10 ? `0${datetime.getMonth() + 1}` : datetime.getMonth() + 1;
+		  const Ndate = datetime.getDate() < 10 ? `0${datetime.getDate()}` : datetime.getDate();
+		  result = `${Nmonth} ${Ndate},${Nyear}`;
+		}
+	   
+		return result;
+}
+ 

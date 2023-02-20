@@ -1,0 +1,34 @@
+.ant-tabs-bar {
+	height: 56px;
+}
+.adm-tab-bar-wrap {
+	height: 56px;
+	background: rgba(255, 255, 255, 0.08);
+	/* Background Blur/Base */
+	backdrop-filter: blur(13px);
+}
+
+.adm-tab-bar-item {
+	background: none;
+	color: #fff;
+}
+.adm-tab-bar-item:nth-of-type(3) {
+	.adm-badge-wrapper {
+		border-radius: 50%;
+		width: 2rem;
+		height: 2rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		@apply bg-brand;
+	}
+	.adm-tab-bar-item-icon {
+		color: #fff;
+		font-size: 20px;
+		display: flex;
+		align-items: center;
+	}
+}
+.adm-tab-bar-item-active {
+	@apply text-skyblue;
+}

@@ -3,12 +3,11 @@ import { Routes, Route, matchRoutes, useNavigate, useLocation } from "react-rout
 import { Badge, TabBar, SafeArea } from 'antd-mobile';
 import {
     AppOutline,
-    MessageOutline,
-    MessageFill,
+    ContentOutline,
     UnorderedListOutline,
     UserOutline,
+    AddOutline
 } from 'antd-mobile-icons'
-
 import router from "@/routers"
 
 function Tabbar() {
@@ -27,37 +26,41 @@ function Tabbar() {
         {
             key: 'todo',
             title: '我的待办',
-            icon: <UnorderedListOutline />,
+            icon: <ContentOutline />,
         },
         {
-            key: 'message',
-            title: '我的消息',
-            icon: (active: boolean) =>
-                active ? <MessageFill /> : <MessageOutline />,
+            key:'create',
+            title:'创建',
+            icon:<AddOutline />
         },
         {
             key: '/me',
             title: '个人中心',
             icon: <UserOutline />,
         },
+        {
+            key: 'message',
+            title: '我的消息',
+            icon:<UnorderedListOutline />
+        },
+        
     ]
 
     return (
         <div>
             {
                 ["/home", "/me"].includes(pathname) &&
-                <TabBar activeKey={pathname}  onChange={tabChange}>
-                    {tabs.map(item => (
-                        <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
+                <TabBar activeKey={pathname}  onChange={tabChange} safeArea>
+
+                    {tabs.map((item,index) => (
+                        <TabBar.Item key={item.key} icon={item.icon} />
                     ))}
-                    <SafeArea position="bottom" />
                 </TabBar>
             }
-
 
         </div>
     );
 
 }
-
+import './tabbar.less'
 export default Tabbar;
