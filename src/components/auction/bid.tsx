@@ -1,5 +1,5 @@
 import { CountDown } from '../countdown'
-
+import { useNavigate } from 'react-router-dom'
 interface auctionProps {
 	name: string
 	creater: string
@@ -11,8 +11,9 @@ interface auctionProps {
 
 const BidItem = (props: auctionProps) => {
 	const { name, creater, imgUrl, countDown, bid, symbol = 'ETH' } = props
+	const navigate = useNavigate()
 	return (
-		<div className="mb-4 rounded-lg bg-ink p-4">
+		<div className="mb-4 rounded-lg bg-ink p-4" onClick={()=>navigate('/auction/detail')}>
 			<div className="flex items-center justify-between">
 				<span className="title-third flex-grow truncate pr-3">{name}</span>
 				<span className="text-sm font-normal text-ink-lighter">@{creater}</span>

@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-#root::-webkit-scrollbar {display:none}
+#root::-webkit-scrollbar,div::-webkit-scrollbar,body::-webkit-scrollbar {display:none}
+#root::-webkit-scrollbar,div::-webkit-scrollbar,body::-webkit-scrollbar { width: 0 !important }
+
+#root,body,div { -ms-overflow-style: none; }
+
+#root,body,div { overflow: -moz-scrollbars-none; }
 /* #root {
   @apply bg-ink-darkest;
 } */
